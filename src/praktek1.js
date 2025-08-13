@@ -152,25 +152,36 @@ if (hour < 10 || hour > 18) {
   console.log("Kantor sudah buka, karena sudah jam", hour);
 }
 
-// SUDAH IKUTI TAPI TIDAK BERFUNGSI
-let jam = 10;
-if (jam < 8 || jam > 20) {
-    if (jam < 8) {
-        console.log("Kantor belum dibuka", jam);
-    } else {
-        console.log("Kantor masih tutup, belum dibuka", jam);
-    }
-}   else {
-     console.log("Kantor telah di tutup, sudah lewat jam ber-operasi" jam);
-    }
+///////// KENAPA TIDAK BISA BERFUNGSI???????????????????????????????????????????
+// let hour2 = 19;
+// if (hour2 < 9 || hour2 > 17) {
+//     if (hour > 17) {
+//         console.log("Kantor telah tutup sudah jam " hour2);
+//     } else {
+//         console.log(" Mohon datang kembali pukul " hour2);
+//     }
+// } else {
+//     console.log ("Kntor sudah buka, silahkan masuk, sudah jam " hour2);
+// }
 
+///////////////////////////////////////////////////////////////////////
+// AND (&&) : Salah satu salah maka hasil salah
+let makan = true;
+let cuciPiring = true;
+if (makan == true && cuciPiring == true) {
+  console.log("Budi sudah boleh bermain");
+} else {
+  if (makan == false) {
+    console.log("Budi, makan dulu...");
+  }
+}
+if (cuciPiring == false) {
+  console.log("Budi, cuci piring dulu... Jangan malas!!");
+}
 
-
-
-
-
-
-
+let makan2 = true;
+let nyapu = true;
+if (ngepel == true && )
 
 
 
