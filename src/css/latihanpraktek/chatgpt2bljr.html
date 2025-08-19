@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center mb-4">My To-Do List</h1>
+
+    <!-- Input Task -->
+    <div class="flex gap-2 mb-4">
+      <input id="taskInput" type="text" placeholder="Enter your task"
+        class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <button onclick="addTask()"
+        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">Add</button>
+    </div>
+
+    <!-- Todo List -->
+    <ul id="taskList" class="space-y-2"></ul>
+  </div>
+
+  <script>
+/* Struktur Dasar JavaScript To-Do List
+    Biasanya terdiri dari 4 bagian utama:
+    *  Ambil elemen dari HTML (pakai document.getElementById atau querySelector)
+    *  Event Listener (misalnya ketika tombol "Add" diklik → jalankan fungsi)
+    *  Manipulasi DOM (buat elemen baru <li> untuk daftar to-do, tambahkan tombol edit/delete/checklist)
+    *  Fungsi tombol (apa yang dilakukan ketika checklist, edit, delete diklik)
+    
+    1. Ambil Elemen dari HTML
+    * taskInput = input teks
+    * addTask = tombol "Add Task"
+    * taskList = tempat menaruh daftar task
+    * Metode yang dipakai: DOM Selection (getElementById).
+    * Fungsinya: mengambil elemen HTML agar bisa dimanipulasi lewat JS. 
+*/
+const inputBtn = document.getElementById ("taskInput")
+const addBtn = document.getElementById ("addTask")
+const list = document.getElementById ("taskList")
+
+///////////////////////////////////////////////////////////////////
+/* 2. Event Listener pada Tombol Add
+ Disini kita pakai Event Listener: addEventListener("click", callbackFunction).
+  Artinya: kalau tombol diklik → jalankan fungsi.
+  Fungsi ini:
+  * Ambil isi input
+  * Cek kalau kosong → tidak ditambahkan
+  * Panggil fungsi addTask() untuk bikin elemen baru
+  * Metode: Event Handling.
+  * Fungsinya: mendengarkan aksi user (klik tombol).
+*/
+addBtn.addEEventListener ("click", () => {
+  const tastText = input.value.trim();
+  if (taskText === "") return;
+  addTask (taskText);
+  input.value = "";
+});
+
+/////////////////////////////////////////////////////////////////////////
+/* 3. Fungsi Membuat Task Baru
+ Penjelasan fungsi:
+  * document.createElement("li") → bikin elemen baru <li>
+  * className → styling (pakai Tailwind di sini)
+  * createElement("button") → bikin tombol untuk tiap fungsi
+  * addEventListener("click") → kasih aksi ke tombol:
+    ** Checklist → kasih garis coret
+    ** Edit → prompt ubah teks
+    ** Delete → hapus elemen
+
+  Metode yang dipakai:
+  * DOM Manipulation (buat, hapus, ubah elemen)
+  * Event Handling (aksi klik di setiap tombol)
+  
+Fungsinya: menampilkan to-do list baru dengan kontrol lengkap.
+*/
+function addTask (taskText) {
+  const li = document.createElement("li");
+  li.className = "flex items-center justify-center bg-gray-100 p-2 rounded mb-2";
+}
+/////////////////////////////////////////////////////////////
+// isi text task
+const span = document.createElement("span");
+span.textContent = taskText;
+
+// Tombol Container
+const btnContainer = document.createElement("div");
+
+// Tombol Checklist
+const checkBtn = document.createElement ("button");
+checkBtn.textContent ="✅";
+checkBtn.addEventListener("click", () => {
+  span.style.textDecoration = "line-through";
+});
+
+// Tombol Edit
+const editBtn = document.createElement ("Button");
+editBtn.textContent = "✏️";
+editBtn.addEventListener ("click", () => {
+  const newTask = prompt ("Edit Task", span.textContent);
+  if (newTask) span.textContent = newTask;
+});
+
+// Tombol Delete
+  const deleteBtn = document.createElement("button"); 
+deleteBtn.textContent = "🗑️";
+deleteBtn.addEventListener("click", () =>{
+  li.remove();
+});
+
+// Gabungkan Tombol
+btnContainer.appendChild(checkBtn);
+btnContainer.appendChild(editBtn);
+btnContainer.appendChild(deleteBtn);
+
+// Gabungkan ke List Item
+li.appendChild(span);
+li.appendChild(btnContainer);
+
+// Masukkan ke dalam ul / ol
+list.appendChild(li);
+
+/*
+🔄 Alur Program
+  1. User ketik task → klik "Add Task"
+  2. Fungsi addTask() dipanggil → bikin <li> baru
+  3. <li> punya teks dan 3 tombol (✅ ✏️ 🗑️)
+  4. Kalau user klik:
+      ✅ → teks dicoret (task selesai)
+      ✏️ → muncul prompt edit
+      🗑️ → task dihapus
+
+✨ Kesimpulan : Jadi, dalam kode ini digunakan beberapa metode penting dalam JavaScript:
+    * DOM Selection → ambil elemen HTML (getElementById)
+    * Event Listener → aksi klik tombol (addEventListener)
+    * DOM Manipulation → bikin, ubah, hapus elemen (createElement, .remove(), .appendChild)
+Dan semuanya bekerja sama untuk menjalankan fungsi membuat To-Do List interaktif.
+*/
+
+  </script>
+</body>
+</html>
+
+/*
+Ringkasnya – Metode JS apa yang dipakai & untuk apa
+* DOM Selection: getElementById → ambil elemen HTML.
+* Event Handling: addEventListener("click", ...) → jalankan aksi saat tombol/elemen diklik.
+* String sanitizing: .trim() → buang spasi kosong agar input valid.
+* DOM Creation: document.createElement(...) → buat elemen baru (li, span, button, div).
+* DOM Mutation: appendChild, className, classList.toggle, textContent, remove() → bentuk struktur, styling, ubah teks, hapus.
+* Browser dialogs: prompt() → edit cepat lewat dialog bawaan.
+*/
+
+
+// 19 Agustus 2025 22:07 PM
