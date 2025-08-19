@@ -1,0 +1,172 @@
+* {
+  //kenapa tidak bisa atur 2 aja, atas-bawah, kiri -kanan
+  /* margin: 0 80px; */
+  margin-right: 50px;
+  margin-left: 50px;
+  /* box-sizing: border-box; */
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//Kenapa no5 dan 6 genpet????
+.container1,
+.container2,
+.container3,
+.container4,
+.container4,
+.container5,
+.container6,
+.container7,
+.container8,
+.container9,
+.container10, {
+  border: 5px solid grey;
+  /* padding: 0; */
+  margin: 10px;
+}
+
+.container1 {
+  background: #E4004B;
+  width: 200px;
+  height: 70px;
+}
+.container2 {
+    background: #FCC61D;
+  width: 100vw;
+  height: 70px;
+}
+.container3 {
+    background: #468A9A;
+  width: 100%;
+  height: 70px;
+}
+.container4 {
+    background: #F5BABB;
+  max-width: 800px;
+  height: 70px;
+}
+
+.container5 {
+    background: #8AA624;
+    min-width: 400px;
+  height: 70px;
+}
+.container6 {
+    background: #B2B0E8;
+  width: 500px;
+  height: 70px;
+  overflow: hidden;
+}
+.container7 {
+    background: #D25D5D;
+    width: 500px;
+    height: 70px;
+}
+.container8 {
+    background: #689B8A;
+    width: 500px;
+    height: 70px;
+}
+.container9 {
+    background: #0F828C;
+    width: 500px;
+    height: 70px;
+}
+
+// Coba kombinasi
+// Kenapa tidak bisa jalan ya??
+.container10 {
+    background: #FFB4B4;
+    min-width: 300px;
+    max-width: 800px;
+    height: 70px;
+}
+
+.context1 {
+    margin-top: 15px;
+}
+
+// Bagian Grid
+.grid1,
+.grid2,
+.grid3, 
+.grid4,
+.grid5, 
+.grid6,
+.grid7, 
+.grid8,
+.grid9, 
+.grid10,
+.grid11, 
+.grid12, {
+    /* kenapa set bordernya kok gk jalan ya?? */
+    border: 5px solid yellow;
+    margin: 0;
+     /* width: 300px; */
+    /* height: 300px; */
+}
+
+.grid1 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
+.grid2 {
+    background: #0F828C;
+    /* width: 300px;
+    height: 300px; */
+}
+.grid3 {
+    background: #0F828C;
+    /* width: 300px;
+    height: 300px; */
+}
+.grid4 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
+.grid5 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
+.grid6 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
+.grid7 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
+.grid8 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
+.grid9 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
+.grid10 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
+.grid11 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
+.grid12 {
+    background: #0F828C;
+    width: 300px;
+    height: 300px;
+}
