@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To Do List App</title>
+  <!-- CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    .task-list {
+      list-style: none;
+      padding: 0;
+    }
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f0f0f0;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 6px;
+    }
+    .task-item input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .task-text {
+      flex: 1;
+    }
+    button {
+      margin-left: 5px;
+    }
+  </style>
+<!-- CSS END -->
+
+</head>
+<body>
+  <main>
+    <div class="container">
+      <h1>To Do List App</h1>
+      <form id="task-form">
+        <input type="text" id="task-input" placeholder="Add a new task">
+        <button type="submit">Tambah</button>
+      </form>
+      <ul class="task-list" id="task-list"></ul>
+    </div>
+  </main>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const form = document.getElementById("task-form");
+    const input = document.getElementById("task-input");
+    const taskList = document.getElementById("task-list");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      addTask(input.value);
+      input.value = "";
+    });
+
+    function addTask(task) {
+      if (task.trim() === "") return;
+
+      const li = document.createElement("li");
+      li.className = "task-item";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+
+      const span = document.createElement("span");
+      span.className = "task-text";
+      span.textContent = task;
+
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "Edit";
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Hapus";
+
+      // Edit Task
+      editBtn.addEventListener("click", () => {
+        const newTask = prompt("Edit your task:", span.textContent);
+        if (newTask !== null && newTask.trim() !== "") {
+          span.textContent = newTask;
+        }
+      });
+
+      // Delete Task
+      deleteBtn.addEventListener("click", () => {
+        taskList.removeChild(li);
+      });
+
+      li.appendChild(checkbox);
+      li.appendChild(span);
+      li.appendChild(editBtn);
+      li.appendChild(deleteBtn);
+
+      taskList.appendChild(li);
+    }
+  </script>
+  <!-- JAVASCRIPT END -->
+</body>
+</html>
