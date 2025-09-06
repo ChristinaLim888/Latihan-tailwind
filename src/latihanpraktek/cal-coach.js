@@ -10,7 +10,7 @@ const prompt = require("prompt-sync")({ sigint: true });
 'use strict';
 const prompt = require('prompt-sync') ({sigint:true});
 'use strict';
-const prompt = require('prompt-sync') ({sigint:true});)
+const prompt = require('prompt-sync') ({sigint:true});
 'use strict'
 conts promot = require('prompt-sync') ({sigint:true});
 'use strict'
@@ -24,53 +24,123 @@ conts prompt = require('prompt-sync') ({sigint:true});
 /* ============================
  * 1) USER INPUT HANDLING
  * ========================== */
+/*
+
+*/
+
 function getValidNumberInput(message) {
   while (true) {
     // loop terus sampai input valid -> kita keluar dengan `return`
     const raw = prompt(message).trim(); // baca input (string) dan hilangkan spasi pinggir
     const n = Number(raw); // konversi string ke Number (tidak pakai parseFloat)
-    if (raw !== "" && !Number.isNaN(n)) return n; // jika bukan string kosong dan bukan NaN -> kembalikan angka
+    if (raw !== "" && !Number.isNaN(n)) return n; // jika bukan string kosong dan bukan NaN -> kembalikan angka, raw !== '' supaya enter kosong tidak dianggap 0
     console.log("Invalid number. Please enter a valid number."); // pesan kesalahan dan ulangi loop
   }
 }
-/*
+/*function getValidNumberInput(message) {
+    while (true) {
+    const raw = prompt(message).trim();
+    const n = number(raw); 
+    if (raw !== "" && !Number.isNan(n)) return n;
+    console.log("Invalid number. Please enter a valid number.");   }}
 
+    function getValidNumberInput(message) {
+    while (true) {
+    const raw = prompt(message).trim();
+    const n = Number(raw);
+    if (raw !== "" && !Number.isNan(n)) return n;
+    console.log("Invalid number. Please enter a valid number.");   }}
+
+    function getValidNumberInput (message) {
+    while (true) {
+    const raw = prompt(message).trim();
+    const n = number(raw);
+    if (raw !== "" && !Number.isNan(n)) return n;
+    console.log("Invalid number. Please enter a valid number.");  }}
+
+    function getValidNumberInput (message) {
+    while (true) {
+    const raw = prompt(message).trim();
+    const n = Number(raw);
+    if (raw !== "" && !Number.isNan(n)) return n;
+    console.log("Invalid number. Please enter a valid number.");   }}
+
+*/
+function getValidOperatorInput(message) {
+  const valid = ["+", "-", "*", "/", "%", "**"]; // daftar operator yang diperbolehkan (note: '**' = pangkat)
+  while (true) {
+    // loop sampai operator valid dimasukkan
+    const op = prompt(message).trim(); // ambil input operator, hapus spasi
+    if (valid.includes(op)) return op; // kalau ada di daftar valid -> kembalikan operator
+    console.log("Invalid operator. Use one of: +, -, *, /, %, **"); // pesan kesalahan + ulangi
+  }
+}
+/* function getValidOperationInput(message) {
+    const valid = ['+', '-', '*', '/', '%', '**'];
+    while (true) {
+      const op = prompt (message).trim();
+      if (valid.includes(op)) return op;
+      console.log("Invalid operator. Use one of: +, -, *, /, %, **"); }}
+
+function getValidOperationInput(message) {
+  const valid = ['+', '-', '*', '/', '%', '**'];
+  while (true) {
+    const op = prompt(message).trim();
+    if (valid.includes(op)) return op;
+    console.log("Invalid operator. Use one of: +, -, *, /, %, **");  }}
+
+function getValidOperationInput (message) {
+  const valid = ['+', '-', '*', '/', '%', '**'];
+  while (true) {
+    const op = prompt(message).trim():
+    if (valid.includes(op)) return op;
+    console.log ("Invalid operator. Use one of: +, -, /, *, %, **");   } }
+
+function getValidOperationInput (message) {
+  const valid = ['+', '-', '*', '/', '%', '**'];
+  while (true) {
+    const op = prompt(message).trim();
+    if (valid.includes(op)) return op;
+    console.log ("Invalid operator. Use one of: +, -, /, *, %, **"); }}
 
 
 
 
 
 */
-function getValidOperatorInput(message) {
-  const valid = ["+", "-", "*", "/", "%", "**"]; // daftar operator yang diperbolehkan (note: '**' = pangkat)
-  while (true) { // loop sampai operator valid dimasukkan
-    const op = prompt(message).trim(); // ambil input operator, hapus spasi
-    if (valid.includes(op)) return op; // kalau ada di daftar valid -> kembalikan operator
-    console.log("Invalid operator. Use one of: +, -, *, /, %, **"); // pesan kesalahan + ulangi
-  }
-}
 
 /* ============================
  * 2) BASIC ARITHMETIC OPS
  * ========================== */
 function add(a, b) {
-  return a + b;
+  // fungsi untuk penjumlahan dua nilai: a + b
+  return a + b; // kembalikan hasil penjumlahan (perhatikan: jika a atau b string, + bisa melakukan concatenation)
 }
 function subtract(a, b) {
-  return a - b;
+  // fungsi untuk pengurangan: a - b
+  return a - b; // kembalikan selisih (JS mencoba konversi ke Number jika operand string)
 }
-function multiply(a, b) {
-  return a * b;
+function multiply(a, b) {    // fungsi untuk perkalian: a * b
+  return a * b;   // kembalikan hasil kali
 }
-function divide(a, b) {
-  return b === 0 ? "Error: Division by zero!" : a / b;
+function divide(a, b) {  // fungsi untuk pembagian: a / b
+  return b === 0 ? "Error: Division by zero!" : a / b;   // jika b === 0 -> kembalikan string error, selain itu -> kembalikan hasil pembagian
 }
-function modulo(a, b) {
-  return b === 0 ? "Error: Division by zero!" : a % b;
+function modulo(a, b) {   // fungsi untuk sisa bagi: a % b
+  return b === 0 ? "Error: Division by zero!" : a % b;   // jika b === 0 -> kembalikan string error, selain itu -> kembalikan remainder JS
 }
-function power(a, b) {
-  return a ** b;
+function power(a, b) {  // fungsi pemangkatan: a ** b
+  return a ** b;   // kembalikan a pangkat b (percobaan: b negatif/pecahan punya behavior spesifik)
 }
+
+/* function add(a,b) {return (a + b);}
+  function substract (a , b) {return (a -b);}
+  function multiply (a , b) {return (a * b);}
+  function devide (a , b) {return b === 0 ? "Error: Division by zero!" : a / b;}
+  function modulo (a , b) {return b === 0 ? "Error: Division by zero!" : a % b;}
+  function power (a , b) {return (a ** b);}
+
+*/
 
 /* ============================
  * 3) MAIN CALCULATOR LOOP
