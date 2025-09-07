@@ -120,17 +120,21 @@ function subtract(a, b) {
   // fungsi untuk pengurangan: a - b
   return a - b; // kembalikan selisih (JS mencoba konversi ke Number jika operand string)
 }
-function multiply(a, b) {    // fungsi untuk perkalian: a * b
-  return a * b;   // kembalikan hasil kali
+function multiply(a, b) {
+  // fungsi untuk perkalian: a * b
+  return a * b; // kembalikan hasil kali
 }
-function divide(a, b) {  // fungsi untuk pembagian: a / b
-  return b === 0 ? "Error: Division by zero!" : a / b;   // jika b === 0 -> kembalikan string error, selain itu -> kembalikan hasil pembagian
+function divide(a, b) {
+  // fungsi untuk pembagian: a / b
+  return b === 0 ? "Error: Division by zero!" : a / b; // jika b === 0 -> kembalikan string error, selain itu -> kembalikan hasil pembagian
 }
-function modulo(a, b) {   // fungsi untuk sisa bagi: a % b
-  return b === 0 ? "Error: Division by zero!" : a % b;   // jika b === 0 -> kembalikan string error, selain itu -> kembalikan remainder JS
+function modulo(a, b) {
+  // fungsi untuk sisa bagi: a % b
+  return b === 0 ? "Error: Division by zero!" : a % b; // jika b === 0 -> kembalikan string error, selain itu -> kembalikan remainder JS
 }
-function power(a, b) {  // fungsi pemangkatan: a ** b
-  return a ** b;   // kembalikan a pangkat b (percobaan: b negatif/pecahan punya behavior spesifik)
+function power(a, b) {
+  // fungsi pemangkatan: a ** b
+  return a ** b; // kembalikan a pangkat b (percobaan: b negatif/pecahan punya behavior spesifik)
 }
 
 /* function add(a,b) {return (a + b);}
@@ -146,65 +150,174 @@ function power(a, b) {  // fungsi pemangkatan: a ** b
  * 3) MAIN CALCULATOR LOOP
  * ========================== */
 while (true) {
-  console.log("----------------------------------------");
-  console.log("Interactive Calculator & Data Analyzer");
-  console.log("----------------------------------------");
+  // loop utama, berjalan terus-menerus (infinite loop)
+  // sampai nanti dihentikan manual (Ctrl+C) atau ditambah logika break.
+  console.log("----------------------------------------"); // cetak garis pemisah agar tampilan rapih di terminal
+  console.log("Interactive Calculator & Data Analyzer"); // judul program supaya user tahu sedang pakai kalkulator interaktif
+  console.log("----------------------------------------"); // cetak lagi garis pemisah sebagai dekorasi/formatting
 
   const num1 = getValidNumberInput("Enter the first number: ");
+  // panggil fungsi getValidNumberInput → minta user input angka pertama
+  // fungsi ini sudah divalidasi: input harus angka, tidak boleh kosong
+  // hasil valid dikembalikan ke variabel num1
   const operator = getValidOperatorInput("Enter operator (+, -, *, /, %, **): ");
+  // panggil fungsi getValidOperatorInput → minta user input operator
+  // operator harus salah satu dari daftar valid (+, -, *, /, %, **)
+  // hasil valid dikembalikan ke variabel operator
   const num2 = getValidNumberInput("Enter the second number: ");
+  // panggil lagi getValidNumberInput → minta angka kedua
+  // hasilnya disimpan ke variabel num2
+  let result; // deklarasi variabel result untuk menampung hasil perhitungan nanti
+/* while (true) {
+console.log("---------------------------------------");
+console.log("Interactive Calculator & Data Analyzer");
+console.log("---------------------------------------");
+const num1 = getValidNumberInput("Enter the first number: ");
+const operator = getValidOperatorInput ("Enter operator (+, -, *, /, %, **): ");
+const num2 = getValidNumberInput ("Enter the second number: ");
+let result;
 
-  let result;
-  switch (operator) {
+while (true) {
+console.log("---------------------------------------");
+console.log("Interactive Calculator & Data Analyzer");
+console.log("---------------------------------------");
+const num1 = getValidNumberInput ("Enter the first number: ");
+const operator = getValidOperatorInput ("Enter operator (+, -, /, *, %, **): ");
+const num2 = getValidNumberInput ("Enter the second number:  ");
+let result;
+*/
+
+  switch (operator) {  // switch dipakai untuk memilih logika berdasarkan operator yang user pilih
     case "+":
-      result = add(num1, num2);
+      result = add(num1, num2); // jika operator '+', panggil fungsi add → num1 + num2
       break;
     case "-":
-      result = subtract(num1, num2);
+      result = subtract(num1, num2); // jika operator '-', panggil fungsi subtract → num1 - num2
       break;
     case "*":
-      result = multiply(num1, num2);
+      result = multiply(num1, num2); // jika operator '*', panggil fungsi multiply → num1 * num2
       break;
     case "/":
-      result = divide(num1, num2);
+      result = divide(num1, num2); // jika operator '/', panggil fungsi divide → num1 / num2 (cek error divide by zero)
       break;
     case "%":
-      result = modulo(num1, num2);
+      result = modulo(num1, num2); // jika operator '%', panggil fungsi modulo → num1 % num2 (cek error divide by zero)
       break;
     case "**":
-      result = power(num1, num2);
+      result = power(num1, num2); // jika operator '**', panggil fungsi power → num1 ** num2 (pangkat)
       break;
     default:
       result = "Unknown operator";
+    // jika operator tidak dikenal (harusnya tidak terjadi karena validasi sudah ada),
+    // fallback ini dipakai sebagai pengaman
   }
+/* switch (operator) {
+case "+": result = add (num1, num2); break;
+case "-" : result = substract (num1, num2); break;
+case "*" : result = multiply (num1, num2); break;
+case "/" : result = divide (num1, num2); break;
+case "%" : result = modulo (num1, num2); break;
+case "**" : result = power (num1, num2); break;
+default: result = "Unknown operator";}
+
+*/
 
   /* ============================
    * 4) DATA TYPE ANALYSIS
    * ========================== */
   console.log(`\nResult: ${result}`);
+  // cetak hasil perhitungan, dengan \n supaya ada baris kosong sebelum "Result"
+  // contoh: "Result: 10"
   console.log(`Type  : ${typeof result}`);
+  // cetak tipe data hasil perhitungan
+  // typeof bisa mengembalikan: "number", "string", "undefined", "object", dll.
+  // contoh: "Type  : number"
+ /* 
+
+
+
+
+*/
 
   if (typeof result === "number") {
-    if (result > 0) console.log("It is a positive number.");
-    else if (result < 0) console.log("It is a negative number.");
-    else console.log("It is zero.");
+    // jika hasil perhitungan berupa angka (number), lakukan analisis lebih lanjut
+    if (result > 0) console.log("It is a positive number."); // kalau hasil lebih dari 0 → tulis keterangan "positif"
+    else if (result < 0) console.log("It is a negative number."); // kalau hasil kurang dari 0 → tulis keterangan "negatif"
+    else console.log("It is zero."); // kalau hasil sama dengan 0 → tulis "nol"
+ /* 
+
+
+
+
+*/
 
     const isInt = Number.isInteger(result);
+    // cek apakah result bilangan bulat (integer) atau pecahan (float)
+    // Number.isInteger(5) → true, Number.isInteger(5.5) → false
     console.log(`Number type: ${isInt ? "Integer" : "Floating-point"}`);
+    // tampilkan tipe angka: "Integer" kalau bulat, "Floating-point" kalau pecahan
+/* 
+
+
+
+
+*/
 
     console.log(isInt ? (result % 2 === 0 ? "Even" : "Odd") : "Cannot determine even/odd for non-integer values.");
+    // jika integer: cek genap/ganjil
+    //   pakai result % 2 === 0 → genap kalau sisa bagi 2 = 0
+    // jika bukan integer: tampilkan pesan "tidak bisa menentukan genap/ganjil"
+ /* 
+
+
+
+
+*/
 
     if (result > 0 && isInt && result % 2 === 0) {
-      console.log("The number is positive AND even.");
+      console.log("The number is positive AND even."); // jika result positif DAN integer DAN genap, cetak pesan tambahan
     }
+ /* 
+
+
+
+
+*/
+
     if (result < 0 || result === 0) {
-      console.log("The number is negative OR zero.");
+      console.log("The number is negative OR zero."); // jika result negatif ATAU sama dengan nol, cetak pesan tambahan
     }
+
+ /* 
+
+
+
+
+*/
+
   } else if (typeof result === "string") {
-    console.log(`Error Message: ${result}`);
+    // kalau result bukan angka, tapi string
+    // misalnya karena divide by zero → result = "Error: Division by zero!"
+    console.log(`Error Message: ${result}`); // tampilkan pesan error yang ada dalam string
+ /* 
+
+
+
+
+*/
+
   } else {
+    // kalau tipe data selain number/string (misalnya undefined/null)
     console.log(result ?? "Result is undefined or null, something went wrong!");
+    // tampilkan nilai result jika ada
+    // kalau null/undefined, tampilkan pesan default: "something went wrong!"
   }
+ /* 
+
+
+
+
+*/
 
   /* ============================
    * 5) EXIT MECHANISM
